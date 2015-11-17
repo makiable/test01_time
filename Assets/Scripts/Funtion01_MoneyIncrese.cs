@@ -9,7 +9,7 @@ public class Funtion01_MoneyIncrese : MonoBehaviour {
 	public GameManager mGameManager;
 
 
-	//[11/11/2015 tgboys]: 
+	//[11/11/2015 tgboys]: 클래시 오브 클랜 방식.
 	// 1. 이 버튼은 시간에 따라 돈이 쌓이고, (시간 X 골드)
 	// 2. 설정된 최대 시간 이상은 돈이 쌓일 수 없다. (다른 건 설정된 골드 이상은 돈이 쌓일 수 없는 걸로) 
 	// 3. 버튼을 클릭하면 돈을 회수하고 
@@ -21,9 +21,7 @@ public class Funtion01_MoneyIncrese : MonoBehaviour {
 
 	//변수
 	public DateTime mButton_PressedLastDateTime; // 이 버튼에 마지작으로 눌린 시간.(저장해야된다.)
-
-	public float mButton_Checktimer;    // 이 버튼 현재 시간. -> time.delta를 통해 Text로 표시.
-	public float mButton_MaxTimer_type_Min; // 이 버튼에 할당된 맥스 분. 
+    public float mButton_MaxTimer_type_Min; // 이 버튼에 할당된 맥스 분. 
 	public float mButton_gold;     // 시간 당 쌓이는 골드
 
 	void Start()
@@ -62,12 +60,13 @@ public class Funtion01_MoneyIncrese : MonoBehaviour {
 			deltaTime += Time.deltaTime;
 			//Debug.Log("deltaTime" + deltaTime);
 
-			//버튼 TEXT에 보여주자.(시간이 얼마나 흘렀나 보여주기)/
+			//1. 버튼 TEXT에 보여주자.(시간이 얼마나 흘렀나 보여주기)/
 			//mButton_text.text = deltaTime.ToString("N0");
 
 			//현재까지의 돈 보여주기.
 			tempGold =  deltaTime * mButton_gold;
-			mButton_text.text = "Gold = " + tempGold.ToString("N0");
+            mButton_text.text = "Gold = " + Math.Truncate(tempGold).ToString("N0");
+            //Math.Truncate(tempGold);
 
 
 			yield return new WaitForFixedUpdate();
@@ -75,60 +74,18 @@ public class Funtion01_MoneyIncrese : MonoBehaviour {
 
 		if (deltaTime >= CalcSec(mButton_MaxTimer_type_Min)) {
 
-			mButton_text.text = "Gold = " + tempGold.ToString("N0");
+			//숫자 버림 사용.
+            mButton_text.text = "Gold = " + Math.Truncate(tempGold).ToString("N0");
 
 			mButton.interactable = true;
 		}
 	}
-
-	public void setTime (DateTime d_Time){
-		DateTime tempTime = d_Time;
-		mButton_PressedLastDateTime = tempTime.AddMinutes (mButton_MaxTimer_type_Min);
-
-		//Debug.Log("mButton_PressedLastDateTime = " + mButton_PressedLastDateTime+ " --Add Time : "+ mButton_MaxTimer_type_Min +"-- System.DateTime.Now is " +System.DateTime.Now);
-		//mButton.interactable = false;
-	}
-
+    		
 	
-	public void CheckTime1(DateTime d_time){
-
-		//비교 해서 아직 시간이 지나지 않았을 때.
-		if (mButton_PressedLastDateTime.CompareTo(d_time) > 0) {
-			//Debug.Log("big");
-			//Debug.Log("mButton_PressedLastDateTime = " + mButton_PressedLastDateTime+ "-- d_time is " + d_time);
-
-			TimeSpan tempCalcTime = mButton_PressedLastDateTime - d_time;
-
-			string a = mButton_PressedLastDateTime.ToString();
-
-			//Debug.Log("a ===="+ a );
-
-			//mButton_text.text = "Time :" +tempCalcTime.ToString();
-
-			//mButton_text.text = "Time: " + mButton_Checktimer.ToString("N0");
-
-		}
-		//시간이 지남.
-		else if (mButton_PressedLastDateTime.CompareTo(d_time) < 0) {
-			//Debug.Log("small");
-			//Debug.Log("mButton_PressedLastDateTime = " + mButton_PressedLastDateTime+ "-- d_time is " + d_time);
-
-			//체크 타임의 숫자를 정한다. 0.25 는 15초.....1은 60초라능.
-
-			//mButton_Checktimer = mButton_MaxTimer_type_Min
-
-			mButton_text.text = "Ready";
-			//mButton.interactable = true;
-		}
-
-	}
-
-
 	public void GetGoldButton()
 	{
 		//눌렀으니 다음 활성화 시간을 기록 한다.
-		DateTime tempTime = System.DateTime.Now;
-		mButton_PressedLastDateTime = tempTime.AddMinutes (mButton_MaxTimer_type_Min);
+        mButton_PressedLastDateTime = System.DateTime.Now.AddMinutes(mButton_MaxTimer_type_Min);
 
 		//돈은 시간만큼 가져간다.
 		float nowGold = CalcSec(mButton_MaxTimer_type_Min) * mButton_gold;
@@ -142,4 +99,6 @@ public class Funtion01_MoneyIncrese : MonoBehaviour {
 		StartCoroutine (CheckTime ());
 
 	}
+
+
 }

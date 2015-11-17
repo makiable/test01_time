@@ -68,7 +68,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Funtion01_MoneyIncrese.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\TapGetGoldButton.cs" />
+    <Compile Include="Assets\Scripts\TimeSpendButton02.cs" />
+    <Compile Include="Assets\Scripts\TimeXGold_Now_Button.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

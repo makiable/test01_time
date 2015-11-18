@@ -22,6 +22,10 @@ public class TimeXGold_Now_Button : MonoBehaviour {
 	public DateTime mButton_PressedLastDateTime; // 이 버튼에 마지작으로 눌린 시간.(저장해야된다.)
     public float mButton_MaxTimer_type_Min; // 이 버튼에 할당된 맥스 분. 
 	public float mButton_gold;     // 시간 당 쌓이는 골드
+    
+    //신규
+    public float tempGold; //시간당 계산된 골드.
+    public float deltaTime;
 
 	void Start()
 	{
@@ -31,11 +35,13 @@ public class TimeXGold_Now_Button : MonoBehaviour {
 
 		//실행을 하면 코루틴 시작.
 		StartCoroutine (CheckTime ());
+
 		Debug.Log ("Start");
 	}
 
 	void Update () 
 	{
+
 	}
 
 	float CalcSec (float a)
@@ -46,26 +52,20 @@ public class TimeXGold_Now_Button : MonoBehaviour {
 	}
 
 
-	//[11/12/2015 tgboys] 모으기 시작 
+	//[17/12/2015 tgboys] 모으기 시작 
 	IEnumerator CheckTime()
 	{
 
-		float tempGold = 0;
-		float deltaTime = 0;
+        tempGold = 0;
+        deltaTime = 0;
 
 		while ( deltaTime < CalcSec(mButton_MaxTimer_type_Min)) {
 			deltaTime += Time.deltaTime;
-			//Debug.Log("deltaTime" + deltaTime);
-
-			//1. 버튼 TEXT에 보여주자.(시간이 얼마나 흘렀나 보여주기)/
-			//mButton_text.text = deltaTime.ToString("N0");
 
 			//현재까지의 돈 보여주기.
 			tempGold =  deltaTime * mButton_gold;
             mButton_text.text = "Gold = " + Math.Truncate(tempGold).ToString("N0");
-            //Math.Truncate(tempGold);
-
-
+            
 			yield return new WaitForFixedUpdate();
 		}
 
@@ -77,14 +77,11 @@ public class TimeXGold_Now_Button : MonoBehaviour {
 		}
 	}
     		
-	
-	public void GetGoldButton()
+	public void GetGoldButton() //누르면 누를수록 빨리 체워 진다 왜 그럴까??
 	{
-		
-
-        
+        StopCoroutine(CheckTime());
 		//돈은 시간만큼 가져간다.
-		float nowGold = CalcSec(mButton_MaxTimer_type_Min) * mButton_gold;
+        float nowGold = deltaTime * mButton_gold;
 
 		mGameManager.NumberTotalGold += nowGold;
 		mGameManager.totalgold.text = mGameManager.NumberTotalGold.ToString ("N0");
@@ -95,8 +92,5 @@ public class TimeXGold_Now_Button : MonoBehaviour {
         mButton_PressedLastDateTime = System.DateTime.Now.AddMinutes(mButton_MaxTimer_type_Min);
 
 		StartCoroutine (CheckTime ());
-
 	}
-
-
 }

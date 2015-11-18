@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
 
 	public Text totalgold;
 
+    public float deltaTimeCheck = 0;
+
 	public float NumberTotalGold = 0;
 
 
@@ -35,6 +37,10 @@ public class GameManager : MonoBehaviour {
 		Maintime2 = System.DateTime.Now;
 
 		SystemTime.text = Maintime2.ToString ();
+
+        deltaTimeCheck += Time.deltaTime;
+
+        SpendTime.text = deltaTimeCheck.ToString();
 
  
 	}

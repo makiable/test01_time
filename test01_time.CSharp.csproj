@@ -51,17 +51,11 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -76,9 +70,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Funtion01_MoneyIncrese.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\ScrollbarSet.cs" />
     <Compile Include="Assets\Scripts\TapGetGoldButton.cs" />
     <Compile Include="Assets\Scripts\TimeSpendButton02.cs" />
     <Compile Include="Assets\Scripts\TimeXGold_Now_Button.cs" />
+    <Compile Include="Assets\Scripts\UIEventManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

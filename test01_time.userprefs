@@ -1,10 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameManager.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\OneDrive\UnityStudy\Ninja-Study-2015-12-11\NinjaStudy151211\Assets\Scripts\Player_NonPhysics.cs">
     <Files>
-      <File FileName="Assets\Funtion01_MoneyIncrese.cs" Line="89" Column="34" />
-      <File FileName="Assets\GameManager.cs" Line="58" Column="1" />
-      <File FileName="Assets\TimeSpendButton02.cs" Line="14" Column="25" />
+      <File FileName="..\..\OneDrive\UnityStudy\Ninja-Study-2015-12-11\NinjaStudy151211\Assets\Scripts\Player_NonPhysics.cs" Line="25" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
